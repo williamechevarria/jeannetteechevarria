@@ -550,12 +550,26 @@ a { color: inherit; text-decoration: none; }
 .contact__list a { transition: color .3s; }
 .contact__list a:hover { color: var(--aqua); }
 .socials { display: flex; gap: 12px; }
-.socials a {
-  width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--sand);
-  display: grid; place-items: center; font-size: 13px; font-weight: 600; letter-spacing: .02em;
-  transition: background .3s, color .3s, border-color .3s, transform .3s;
+.social {
+  position: relative; width: 46px; height: 46px; border-radius: 50%;
+  border: 1px solid var(--sand); background: var(--white); color: var(--ink);
+  display: grid; place-items: center; overflow: hidden;
+  transition: color .3s var(--ease), border-color .3s var(--ease), transform .35s var(--ease), box-shadow .35s var(--ease);
 }
-.socials a:hover { background: var(--ink); color: var(--shell); border-color: var(--ink); transform: translateY(-3px); }
+.social svg { width: 19px; height: 19px; fill: currentColor; position: relative; z-index: 1; transition: transform .35s var(--ease); }
+/* Brand color washes in from beneath on hover */
+.social::before {
+  content: ''; position: absolute; inset: 0; border-radius: 50%;
+  transform: scale(0); opacity: 0;
+  transition: transform .4s var(--ease), opacity .4s var(--ease);
+}
+.social--fb::before { background: #1877F2; }
+.social--li::before { background: #0A66C2; }
+.social--yt::before { background: #FF0000; }
+.social--ig::before { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285AEB 90%); }
+.social:hover, .social:focus-visible { color: #fff; border-color: transparent; transform: translateY(-4px); box-shadow: 0 12px 24px -10px rgba(14,42,48,.55); }
+.social:hover::before, .social:focus-visible::before { transform: scale(1); opacity: 1; }
+.social:hover svg { transform: scale(1.08); }
 
 .contact__form {
   background: var(--white); border: 1px solid var(--sand); border-radius: 18px;
