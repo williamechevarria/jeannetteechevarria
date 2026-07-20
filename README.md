@@ -39,6 +39,18 @@ Three things are intentionally left as drop-in points:
 The contact form hands off via `mailto:` to `jeannette@jmeelite.com`. To capture leads
 server-side instead, point the form at Formspree, Basin, or a Vercel Function.
 
+## Link previews
+
+Sharing the URL renders a 1200×630 card (`assets/og-image.jpg`) built from her portrait,
+the dusk skyline, and the JME logo. **Open Graph requires absolute URLs**, so the `og:` and
+`twitter:` tags in `index.html` hard-code `https://jeannetteechevarria.vercel.app`. If the
+site moves to a custom domain, update those tags and `<link rel="canonical">` or previews
+will keep pointing at the old host.
+
+Facebook and LinkedIn cache aggressively — after changing the image, re-scrape via
+[Facebook's Sharing Debugger](https://developers.facebook.com/tools/debug/) and
+[LinkedIn's Post Inspector](https://www.linkedin.com/post-inspector/) to bust it.
+
 ## Market map
 
 The Areas section renders Florida and Virginia from public-domain state outlines
