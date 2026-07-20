@@ -32,7 +32,7 @@ The signature concept: Jeannette's Virginia→Florida story is encoded as **lati
 
 ### Page structure (in order)
 
-1. **Fixed nav** — starts transparent with white text over hero; after 40px scroll gains cream translucent blur background and ink text (`.is-scrolled`). Left: circular "JE" monogram + "Jeannette Echevarria" in Italiana. Center links (About, Portfolio, Search MLS, Areas, Testimonials, Team, Join LPT) with animated underline + scroll-spy active state; pill "Work With Me" CTA; phone number right. Mobile ≤900px: hamburger (must set `color: inherit` on the button) opening a dark slide-down panel. Plus a 3px scroll-progress bar fixed at the very top (aqua gradient).
+1. **Fixed nav** — starts transparent with white text over hero; after 40px scroll gains cream translucent blur background and ink text (`.is-scrolled`). Left: her real cursive **JE** monogram logo (`assets/logo.png`), with the ink variant cross-fading in on scroll. Center links (About, Portfolio, Search MLS, Areas, Testimonials, Team, Join LPT) with animated underline + scroll-spy active state; pill "Work With Me" CTA; phone number right. Mobile ≤900px: hamburger (must set `color: inherit` on the button) opening a dark slide-down panel. Plus a 3px scroll-progress bar fixed at the very top (aqua gradient).
 2. **Hero** — full-viewport aerial Florida-coastline photo with slow Ken Burns zoom (24s alternate), teal gradient scrim, centered: latitude eyebrow "27.95° N · Tampa Bay — 38.65° N · Northern Virginia" (shell-white with text-shadow), two-line name in huge Italiana (clamp(56px, 11vw, 152px)) with rise-up mask reveal animation ("Jeannette" white, "Echevarria" bright aqua, 0.18s stagger, text-shadow for contrast), subline "Two coastlines. One standard. Top-producing real estate across Florida — from Tampa Bay to Miami — and Northern Virginia, led by tenacity, negotiation, and a client-first heart.", two pill CTAs, animated scroll-hint line at bottom.
 3. **Neighborhood ticker** — ink band, infinitely scrolling marquee (CSS keyframes, duplicated list, pause on hover) of service areas in Italiana caps separated by tiny aqua diamonds: Tampa, St. Petersburg, Clearwater, Sarasota, Orlando, Miami, Hallandale Beach, Fort Lauderdale, Stafford, Woodbridge, Alexandria, Arlington.
 4. **Stats band** — ink background, 4 columns with thin aqua dividers, IntersectionObserver-triggered count-up numbers in Italiana bright aqua (Top 5% / $100M / 2 states — producer in Florida & Virginia / 25+) with uppercase letter-spaced labels.
@@ -50,7 +50,8 @@ The signature concept: Jeannette's Virginia→Florida story is encoded as **lati
 10.5 (between Team and Join LPT). **Social feed** (`id="social"`, shell background) — centered head "Follow Along / @jeannetteechevarria". An edge-to-edge auto-scrolling marquee (same keyframes as the ticker, 52s, pause on hover, soft fade mask at both edges) of 4:5 social cards: photo cards reusing site assets with a gradient caption bar (network eyebrow in aqua caps + one-line caption, e.g. "Golden hour on the Bay — new Tampa listing drops Friday", "JUST SOLD — Cape Cod charm in Locust Grove") and ink "quote" cards in Lora italic (market takes, a Quantico VA-loan reel, a 100th-closing milestone). Cards link to the social profiles; JS clones the track children once (aria-hidden) for a seamless loop. A comment marks `<div id="socialSlot">` as the slot for a real feed widget (Behold / Elfsight / LightWidget). Below: "Follow on Instagram" button.
 11. **Join LPT** — dark section with Miami-skyline-at-dusk photo at ~22% opacity behind a teal gradient; heading "Real estate, reimagined — join the movement", lede about LPT Realty, 3×2 grid of glass (blurred translucent) model cards: 100% Commission, RevShare Partner, Real Estate Team, Your Own Brokerage, Retirement Wealth, and a "Ready?" card with "Sign Me Up" button.
 12. **Contact** — shell, `38.65° N` watermark; left column: "Let's talk about your next move", contact list (phone / email / brokerage in large Italiana), circular social buttons (Fb Ig In Yt); right: white form card with a buying/selling/joining-the-team radio pill toggle, floating-label inputs (first/last name, email, message), submit builds a `mailto:jeannette@jmeelite.com` link with the form contents and shows a status note; inline validation message when required fields are empty.
-13. **Footer** — ink; brand, anchor links, the full accessibility statement, copyright line with JS-updated year + Unsplash photo credit.
+12.5 **Affiliate Companies** — shell background, small-caps "Affiliate Companies" label above a centered row of the three partner logos (LPT Realty, NU World Title, REALTOR®), grayscale at 65% opacity, going full color and lifting on hover. Sizes are set per-logo to balance optical weight (LPT is a wide wordmark at 34px tall; the square-ish marks run 52–62px).
+13. **Footer** — ink; stacked JE logo (`assets/logo-stacked.png`), anchor links, the full accessibility statement, copyright line with JS-updated year + Unsplash photo credit.
 14. **Back-to-top** floating circle button appearing after 700px scroll.
 
 ### Behavior & quality bar
@@ -62,6 +63,21 @@ The signature concept: Jeannette's Virginia→Florida story is encoded as **lati
 - Smooth anchor scrolling with `scroll-padding-top` matching the 76px nav.
 
 ### Assets (download into `assets/`)
+
+**Brand logos** — recovered from the original theme directory. Base URL:
+`https://web.archive.org/web/20250327224851im_/https://www.jeannetteechevarria.com/wp-content/themes/jechevarria_pending.com/images/`
+
+- `logo.png` → `assets/logo.png` — cursive **JE** monogram + "JEANNETTE / ECHEVARRIA" horizontal lockup (white on transparent; this is the real brand mark — do not substitute type for it)
+- `footer-logo.png` → `assets/logo-stacked.png` — same monogram stacked above the wordmark
+- `logos/logo-5-c.png` → `assets/partner-lpt.png` — LPT Realty, full color
+- `logos/logo-2-c.png` → `assets/partner-nuworld.png` — NU World Title, full color
+- `logos/logo-7-c.png` → `assets/partner-realtor.png` — REALTOR®, full color
+- Favicon: `https://web.archive.org/web/20250327224851im_/https://www.jeannetteechevarria.com/wp-content/uploads/2022/09/cropped-fav-192x192.png` → `assets/favicon.png`
+
+The logos are **white on transparent**, so they vanish on the cream nav. Generate an ink
+variant with Pillow — walk the pixels and replace RGB with `(14,42,48)` wherever `alpha > 0`,
+preserving alpha — saved as `assets/logo-ink.png`. The nav stacks both images absolutely and
+cross-fades opacity on `.is-scrolled`.
 
 Real photos recovered from the Wayback Machine (append the original URL to `https://web.archive.org/web/<timestamp>im_/`):
 
