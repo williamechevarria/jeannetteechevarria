@@ -192,6 +192,14 @@ a { color: inherit; text-decoration: none; }
   box-shadow: 0 40px 80px -30px rgba(0,0,0,.45);
 }
 .portrait__frame img { margin: 0 auto; filter: drop-shadow(0 24px 30px rgba(0,0,0,.35)); }
+/* Photo variant: the studio shot is inset inside the arch so the gold reads as a
+   frame around it — no background keying needed, no cut-out fringe. */
+.portrait__frame--photo { padding: 16px; }
+.portrait__frame--photo img {
+  width: 100%; object-fit: cover; object-position: center 8%;
+  filter: none; aspect-ratio: 4 / 5;
+  border-radius: 244px 244px 6px 6px;
+}
 .portrait__badge {
   position: absolute; bottom: -24px; right: clamp(-10px, 1vw, 20px);
   background: var(--ink); color: var(--shell); border-radius: 50%;
@@ -405,8 +413,10 @@ a { color: inherit; text-decoration: none; }
   width: auto; opacity: .65; filter: grayscale(1);
   transition: opacity .4s var(--ease), filter .4s var(--ease), transform .4s var(--ease);
 }
-/* Balance optical weight: LPT is a wide wordmark, the others are tall marks */
-.partners__row li:nth-child(1) img { height: 34px; }
+/* Balance optical weight — each mark has a different aspect ratio.
+   Paramount is a stacked lockup (two roundels over a wordmark) so it needs
+   more height than the others to stay legible. */
+.partners__row li:nth-child(1) img { height: 96px; }
 .partners__row li:nth-child(2) img { height: 62px; }
 .partners__row li:nth-child(3) img { height: 52px; }
 .partners__row img:hover { opacity: 1; filter: none; transform: translateY(-3px); }
@@ -675,6 +685,11 @@ a { color: inherit; text-decoration: none; }
   .search__row { flex-direction: column; align-items: stretch; }
   .sfield { min-width: 0; }
   .spost { width: 240px; }
+  /* Partner marks scale down so the row stays on one line */
+  .partners__row { gap: 26px; }
+  .partners__row li:nth-child(1) img { height: 58px; }
+  .partners__row li:nth-child(2) img { height: 40px; }
+  .partners__row li:nth-child(3) img { height: 34px; }
   .field-row { grid-template-columns: 1fr; }
   .stats__grid { grid-template-columns: 1fr 1fr; }
   .stat + .stat::before { display: none; }
