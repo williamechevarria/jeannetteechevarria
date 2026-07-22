@@ -192,25 +192,25 @@ a { color: inherit; text-decoration: none; }
   box-shadow: 0 40px 80px -30px rgba(0,0,0,.45);
 }
 .portrait__frame img { margin: 0 auto; filter: drop-shadow(0 24px 30px rgba(0,0,0,.35)); }
-/* Photo variant: the studio shot is inset inside the arch so the gold reads as a
-   frame around it — no background keying needed, no cut-out fringe. */
-.portrait__frame--photo { padding: 16px; }
+/* Photo variant: the studio headshot stands on its own — no arch, no gradient.
+   Just the shot on its own white ground, with a quiet border and a hover lift. */
+.portrait__frame--photo {
+  border-radius: 14px;
+  background: #fff;
+  border: 1px solid var(--sand);
+  padding: 0;
+  box-shadow: 0 18px 44px -26px rgba(0,0,0,.35);
+  transition: transform .45s var(--ease), box-shadow .45s var(--ease), border-color .45s var(--ease);
+}
 .portrait__frame--photo img {
-  width: 100%; object-fit: cover; object-position: center 8%;
-  filter: none; aspect-ratio: 4 / 5;
-  border-radius: 244px 244px 6px 6px;
+  width: 100%; height: auto; display: block;
+  filter: none; border-radius: 13px;
 }
-.portrait__badge {
-  position: absolute; bottom: -24px; right: clamp(-10px, 1vw, 20px);
-  background: var(--ink); color: var(--shell); border-radius: 50%;
-  width: 132px; height: 132px; display: grid; place-content: center; text-align: center;
-  border: 1px solid rgba(232,185,106,.4);
-  box-shadow: 0 20px 40px -18px rgba(0,0,0,.6);
-  animation: floaty 5s ease-in-out infinite;
+.portrait__frame--photo:hover {
+  transform: translateY(-6px);
+  border-color: var(--aqua);
+  box-shadow: 0 34px 70px -28px rgba(0,0,0,.45);
 }
-.portrait__badge span { font-family: var(--display); font-size: 32px; letter-spacing: .1em; color: var(--aqua-bright); }
-.portrait__badge small { font-size: 9px; letter-spacing: .18em; text-transform: uppercase; opacity: .7; padding: 0 14px; }
-@keyframes floaty { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
 .about__copy p { margin-bottom: 18px; max-width: 62ch; color: var(--text); font-size: 16.5px; }
 .about__copy p.eyebrow { margin-bottom: 22px; }
 .accolades { list-style: none; display: flex; flex-wrap: wrap; gap: 10px; margin: 26px 0 34px; }
